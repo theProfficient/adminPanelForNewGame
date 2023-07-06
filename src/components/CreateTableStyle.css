@@ -1,43 +1,45 @@
 .container {
-    text-align: center;
-  }
-  
-  .form-group {
-    margin-bottom: 10px;
-  }
-  
-  .submit-button {
-    margin-top: 10px;
-  }
-  
-  .label {
-    color: white;
-    margin-right: 10px;
-    font-weight: bold; /* Example: adding font-weight */
-  }
-  
-  
-  .input {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .button {
-    background-color: #4285f4;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .button:hover {
-    background-color: #1e67e4;
-  }
-  
-  .button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-  
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: Arial;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.label {
+  color: white;
+  margin-right: 10px;
+  font-weight: bold;
+  width: 120px;
+}
+
+.input {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  flex: 1;
+}
+
+.button {
+  background-color: #201c20;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.button:hover {
+  background-color: #31a5d3;
+}
+
+.button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

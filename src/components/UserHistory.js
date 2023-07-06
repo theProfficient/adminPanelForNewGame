@@ -44,7 +44,7 @@ const UserHistory = () => {
 
   return (
     <div>
-      <h2>User History</h2>
+      {/* <h2>User History</h2> */}
       <table className="table">
         <thead>
           <tr>

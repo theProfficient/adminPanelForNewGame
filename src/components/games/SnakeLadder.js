@@ -7,9 +7,12 @@ const SnakeLadderData = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5);
 
+ 
   useEffect(() => {
+  const fetchSnakeLadderData = () => {
     axios
-      .get('https://snakeladder-c5dz.onrender.com/getAllSnakeLadderData')
+      // .get('https://snakeladder1.azurewebsites.net/getAllSnakeLadderData')
+       .get('https://snakeladder-c5dz.onrender.com/getAllSnakeLadderData')
       .then(response => {
         setSnakeLadderData(response.data.data);
         console.log(response.data.data);
@@ -19,6 +22,13 @@ const SnakeLadderData = () => {
         console.log('Error response:', error.response);
         console.log('Error message:', error.message);
       });
+  };
+  fetchSnakeLadderData();
+  const interval = setInterval(fetchSnakeLadderData, 3000); // Fetch every 2 seconds
+
+    return () => {
+      clearInterval(interval); // Clean up the interval on component unmount
+    };
   }, []);
 
   if (snakeLadderData === null) {
@@ -91,6 +101,6 @@ const SnakeLadderData = () => {
       </div>
     </div>
   );
-}
+};
 
 export default SnakeLadderData;

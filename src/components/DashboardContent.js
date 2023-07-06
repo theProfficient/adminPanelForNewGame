@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './DashboardContentStyle.css';
-import { NavLink,useNavigate } from "react-router-dom";
-import UserHistory from './UserHistory.js';
+import { useNavigate } from "react-router-dom";
+// import UserHistory from './UserHistory.js';
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5);
-  const [selectedUserId, setSelectedUserId] = useState(null);
-  const [showUserHistory, setShowUserHistory] = useState(false);
+  // const [selectedUserId, setSelectedUserId] = useState(null);
+  // const [showUserHistory, setShowUserHistory] = useState(false);
 
   useEffect(() => {
+    const fetchAllUserData = () => {
     axios
       .get('https://snakeladder-c5dz.onrender.com/getAllUser')
       .then(response => {
@@ -22,11 +23,18 @@ const Dashboard = () => {
       .catch(error => {
         console.error('Error fetching data:', error);
       });
+    };
+    fetchAllUserData(); // Initial fetch
+
+    const interval = setInterval(fetchAllUserData, 5000); // Fetch every 2 seconds
+
+    return () => {
+      clearInterval(interval); // Clean up the interval on component unmount
+    };
+    
   }, []);
 
   const handleView = (userId) => {
-  //  setSelectedUserId(userId);
-  //   setShowUserHistory(true); 
   navigate(`/user/history?UserId=${userId}`);
 
   };
@@ -102,7 +110,7 @@ const Dashboard = () => {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = userData.slice(indexOfFirstItem, indexOfLastItem);
-
+  const startSerialNumber = (currentPage - 1) * itemsPerPage + 1;
   return (
     <div>
       <div className="search-container">
@@ -128,7 +136,7 @@ const Dashboard = () => {
         <tbody>
           {currentItems.map((user, index) => (
             <tr key={user._id}>
-              <td className="table-cell">{index + 1}</td>
+              <td className="table-cell">{startSerialNumber + index }</td>
               <td className="table-cell">{user.UserId}</td>
               <td className="table-cell">
                 {user.isEditing ? (
