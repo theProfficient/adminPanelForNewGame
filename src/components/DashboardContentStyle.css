@@ -1,0 +1,100 @@
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    color: rgb(255, 255, 255);
+  }                                          
+  
+  .table th {
+    padding: 10px;
+    background-color: rgb(0, 213, 255);
+    text-align: left;
+    font-family:Arial,Arial, Arial;;
+  }
+  
+  .table td {
+    padding: 10px;
+    border: 1px solid rgb(255, 255, 255);
+  }
+  
+  .button {
+    background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  .edit-button {
+    background-color: #fff;
+    color: #3d83ce;
+    border: 1px solid #3d83ce;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .edit-button:hover {
+    background-color: #3d83ce;
+    color: #fff;
+  }
+  .userHistory-button {
+    background-color: #fff;
+    color: #3d83ce;
+    border: 1px solid #3d83ce;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .userHistory-button:hover {
+    background-color: #3d83ce;
+    color: #fff;
+  }
+ .button.save-button {
+  background-color: #fff;
+  color:#3d83ce;
+  border: 1px solid #3d83ce;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button.save-button:hover {
+  background-color: green;
+  color: #fff;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #3d83ce;
+  color: #fff;
+  cursor: pointer;
+}
+
+.pagination button:hover {
+  background-color: #3d83ce;
+}
+
+.search-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 20px; /* Add some bottom margin to create spacing */
+}
+
+.search-input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+  width: 200px; /* Adjust the width as needed */
+}
+
