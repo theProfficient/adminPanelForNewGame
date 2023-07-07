@@ -1,53 +1,54 @@
-.games-heading{
+.games-heading {
     text-align: center;
-    padding: 4rem 0 2rem 0;
-
-}
-
-.games-container{
-    max-width:1140px;
+    padding: 2rem 0;
+  }
+  
+  .games-container {
+    max-width: 90%;
     margin: auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     padding-bottom: 5rem;
-}
-
-.games-card{
-background: #1a1919;
-padding: 1.2rem 1rem;
-}
-
-.games-card img{
+  }
+  
+  .games-card {
+    background: #6e88b9;
+    padding: 1rem;
+    width: calc(25% - 20px); /* Adjust the width as needed */
+    margin-bottom: 20px; /* Adjust the spacing between boxes */
+    position: relative; /* Required for absolute positioning of buttons */
+  }
+  
+  .games-card img {
     width: 100%;
-}
-
-.games-title{
+    height: 200px; /* Adjust the height as needed */
+    object-fit: cover; /* Ensures images maintain aspect ratio */
+  }
+  
+  .games-title {
     color: #fff;
     padding: 1rem 0;
-}
-
-.pro-details p{
-    padding-bottom: 1rem;
+  }
+  
+  .pro-details {
+    padding-bottom: 3rem; /* Adjust the spacing between text and buttons */
     font-size: 1.1rem;
     text-align: justify;
-}
-
-.pro-btns{
+  }
+  
+  .pro-btns {
     display: flex;
     justify-content: space-between;
-    padding: 0.5rem 0;
-}
-
-.pro-btns .btn{
-    padding: 0.5rem 1rem
-}
-@media screen and (max-width:740px){
-    .games-container{
-        max-width: 90%;
-        margin:auto;
-
-        grid-template-columns:1fr;
-    }
-    
-}
+    position: absolute; /* Position buttons at the bottom */
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  
+  .pro-btns .btn {
+    padding: 0.5rem 1rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+  
