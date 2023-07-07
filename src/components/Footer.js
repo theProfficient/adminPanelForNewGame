@@ -36,11 +36,11 @@ const Footer = () => {
                 <p> We are an Ultimate Guide for Starting a Multigaming Business .</p>
                 <div className="social">
                     <FaInstagram size={25} style={{color:"#fff", marginRight:"1rem"}}/>
-                    gmail.com
+                    {/* gmail.com */}
                     <FaFacebook size={25} style={{color:"#fff", marginRight:"1rem"}}/>
-                    facebook
+                    {/* facebook */}
                     <FaLinkedin size={25} style={{color:"#fff", marginRight:"1rem"}}/>
-                    linkedin
+                    {/* linkedin */}
                 </div>
             </div>
 </div>

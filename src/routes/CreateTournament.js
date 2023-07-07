@@ -5,17 +5,11 @@ import Footer from '../components/Footer';
 import CreateTournaments from "../components/CreateTable";
 
 const CreateTournament = () => {
-  const blueTextStyle = {
-    color: 'white',
-    fontSize: '30px',
-    fontWeight: 'bold',
-    fontFamily: 'Arial' // Add the fontFamily property here
-  };
 
   return (
     <div>
       <Navbar/>
-      <HeroImage2 text={<span style={blueTextStyle}>Introduce a new Tournament.</span>} />
+      <HeroImage2 heading="TOURNAMENT " text="Introduce a new Tournament."/>
       <CreateTournaments/>
       <Footer/>
     </div>

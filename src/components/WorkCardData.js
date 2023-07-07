@@ -1,8 +1,7 @@
 import game1 from "../assets/cricket.jpg"
 import game2 from "../assets/snakeLadder.jpg"
-import game3 from "../assets/tictactoe.jpg"
-import game4 from "../assets/airHockey.jpg";
-import { Route, Routes, Navigate } from "react-router-dom";
+import game3 from "../assets/tictactoe1.jpg"
+import game4 from "../assets/airHockey1.jpg";
 
 const gamesCardData = [
     {
