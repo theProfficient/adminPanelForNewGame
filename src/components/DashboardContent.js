@@ -115,13 +115,13 @@ const Dashboard = () => {
   const startSerialNumber = (currentPage - 1) * itemsPerPage + 1;
   return (
     <div>
-      <div className="search-container">
-        <input
+      {/* <div className="search-container"> */}
+        {/* <input
           className="search-input"
           type="text"
           placeholder="Search UserId"
-        />
-      </div>
+        /> */}
+      {/* </div> */}
       <table className="table">
         <thead>
           <tr>
