@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import './DashboardContentStyle.css';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "./DashboardContentStyle.css";
 import { useNavigate } from "react-router-dom";
 // import UserHistory from './UserHistory.js';
 
@@ -14,33 +14,32 @@ const Dashboard = () => {
 
   useEffect(() => {
     const fetchAllUserData = () => {
-    axios
-      .get('https://snakeladder-c5dz.onrender.com/getAllUser')
-      .then(response => {
-        setUserData(response.data);
-        console.log(response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
+      axios
+        .get("https://snakeladder1.azurewebsites.net/getAllUser")
+        //.get('https://snakeladder-c5dz.onrender.com/getAllUser')
+        .then((response) => {
+          setUserData(response.data);
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
     };
     fetchAllUserData(); // Initial fetch
 
-    const interval = setInterval(fetchAllUserData, 5000); // Fetch every 2 seconds
+    const interval = setInterval(fetchAllUserData, 5000); // Fetch every 5 seconds
 
     return () => {
       clearInterval(interval); // Clean up the interval on component unmount
     };
-    
   }, []);
 
   const handleView = (userId) => {
-  navigate(`/user/history?UserId=${userId}`);
-
+    navigate(`/user/history?UserId=${userId}`);
   };
 
   const handleEdit = (userId) => {
-    const updatedUserData = userData.map(user => {
+    const updatedUserData = userData.map((user) => {
       if (user.UserId === userId) {
         return { ...user, isEditing: true };
       }
@@ -51,7 +50,7 @@ const Dashboard = () => {
 
   const handleInputChange = (e, userId) => {
     const { name, value } = e.target;
-    const updatedUserData = userData.map(user => {
+    const updatedUserData = userData.map((user) => {
       if (user.UserId === userId) {
         return { ...user, [name]: value };
       }
@@ -71,12 +70,15 @@ const Dashboard = () => {
       }
     }
 
-    const queryParamsString = queryParams.join('&');
+    const queryParamsString = queryParams.join("&");
 
     axios
-      .put(`https://snakeladder-c5dz.onrender.com/updateUser?UserId=${UserId}&${queryParamsString}`)
+      .put(
+        `https://snakeladder1.azurewebsites.net/updateUser?UserId=${UserId}&${queryParamsString}`
+      )
+      // .put(`https://snakeladder-c5dz.onrender.com/updateUser?UserId=${UserId}&${queryParamsString}`)
       .then((response) => {
-        console.log('User data updated successfully:', response.data);
+        console.log("User data updated successfully:", response.data);
         const updatedUserData = userData.map((user) => {
           if (user.UserId === userId) {
             return { ...user, ...updatedData };
@@ -86,7 +88,7 @@ const Dashboard = () => {
         setUserData(updatedUserData);
       })
       .catch((error) => {
-        console.error('Error updating user data:', error);
+        console.error("Error updating user data:", error);
       })
       .finally(() => {
         const updatedUserData = userData.map((user) => {
@@ -114,7 +116,11 @@ const Dashboard = () => {
   return (
     <div>
       <div className="search-container">
-        <input className="search-input" type="text" placeholder="Search UserId" />
+        <input
+          className="search-input"
+          type="text"
+          placeholder="Search UserId"
+        />
       </div>
       <table className="table">
         <thead>
@@ -136,14 +142,14 @@ const Dashboard = () => {
         <tbody>
           {currentItems.map((user, index) => (
             <tr key={user._id}>
-              <td className="table-cell">{startSerialNumber + index }</td>
+              <td className="table-cell">{startSerialNumber + index}</td>
               <td className="table-cell">{user.UserId}</td>
               <td className="table-cell">
                 {user.isEditing ? (
                   <input
                     type="text"
                     name="userName"
-                    value={user.userName || ''}
+                    value={user.userName || ""}
                     onChange={(e) => handleInputChange(e, user.UserId)}
                   />
                 ) : (
@@ -155,7 +161,7 @@ const Dashboard = () => {
                   <input
                     type="text"
                     name="credits"
-                    value={user.credits || ''}
+                    value={user.credits || ""}
                     onChange={(e) => handleInputChange(e, user.UserId)}
                   />
                 ) : (
@@ -171,7 +177,7 @@ const Dashboard = () => {
                   <input
                     type="text"
                     name="email"
-                    value={user.email || ''}
+                    value={user.email || ""}
                     onChange={(e) => handleInputChange(e, user.UserId)}
                   />
                 ) : (
@@ -183,7 +189,7 @@ const Dashboard = () => {
                   <input
                     type="text"
                     name="phone"
-                    value={user.phone || ''}
+                    value={user.phone || ""}
                     onChange={(e) => handleInputChange(e, user.UserId)}
                   />
                 ) : (
@@ -191,17 +197,26 @@ const Dashboard = () => {
                 )}
               </td>
               <td className="table-cell">
-                <button className="button userHistory-button" onClick={() => handleView(user.UserId)}>
+                <button
+                  className="button userHistory-button"
+                  onClick={() => handleView(user.UserId)}
+                >
                   <i className="fas fa-eye"></i> View
                 </button>
               </td>
               <td className="table-cell">
                 {user.isEditing ? (
-                  <button className="button save-button" onClick={() => handleSave(user.UserId)}>
+                  <button
+                    className="button save-button"
+                    onClick={() => handleSave(user.UserId)}
+                  >
                     Save
                   </button>
                 ) : (
-                  <button className="button edit-button" onClick={() => handleEdit(user.UserId)}>
+                  <button
+                    className="button edit-button"
+                    onClick={() => handleEdit(user.UserId)}
+                  >
                     <i className="fas fa-edit"></i> Edit
                   </button>
                 )}

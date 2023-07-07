@@ -14,7 +14,8 @@ const UserHistory = () => {
 
   useEffect(() => {
     axios
-      .get(`https://snakeladder-c5dz.onrender.com/profile?UserId=${UserId}`)
+    .get(`https://snakeladder1.azurewebsites.net/profile?UserId=${UserId}`)
+      // .get(`https://snakeladder-c5dz.onrender.com/profile?UserId=${UserId}`)
       .then(response => {
         setUserData(response.data.data);
         console.log(response.data.data.history,"i want to see history");

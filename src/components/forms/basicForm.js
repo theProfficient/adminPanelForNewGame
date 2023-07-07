@@ -15,7 +15,8 @@ export const BasicForm = ({ onLogin }) => {
     e.preventDefault();
     
     try {
-      const response = await axios.post('https://snakeladder-c5dz.onrender.com/login', { email, password });
+      // const response = await axios.post('https://snakeladder-c5dz.onrender.com/login', { email, password });
+      const response = await axios.post('https://snakeladder1.azurewebsites.net/login', { email, password });
       const { data } = response;
       console.log("email>>>>>>>>>",email, "password>>>>>>>>>",password);
       if (data.success) {

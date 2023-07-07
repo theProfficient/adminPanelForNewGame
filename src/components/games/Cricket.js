@@ -10,7 +10,8 @@ const CricketData = () => {
   useEffect(() => {
     const fetchData = () => {
       axios
-        .get('https://snakeladder-c5dz.onrender.com/tables')
+       .get('https://snakeladder1.azurewebsites.net/tables')
+        // .get('https://snakeladder-c5dz.onrender.com/tables')
         .then(response => {
           setCricketData(response.data.data);
           console.log(response.data.data);
