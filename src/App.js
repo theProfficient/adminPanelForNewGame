@@ -10,7 +10,7 @@ import Cricket from "./components/games/Cricket";
 import SnakeLadder from "./components/games/SnakeLadder";
 import UserHistory from "./components/UserHistory";
 
- function App() {
+function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const handleLogin = () => {
     setIsLoggedIn(true);
@@ -19,34 +19,24 @@ import UserHistory from "./components/UserHistory";
   return (
     <>
       <Routes>
-        {/* <Route
-          path="/"
-          element={!isLoggedIn ? <BasicForm onLogin={handleLogin} /> : <Navigate to="/home" />}
-        /> */}
-        {/* <Route path="/games" element={isLoggedIn ? <Games /> : <Navigate to="/" />} /> */}
-       {/* <Route
-          path="/dashboard"
-          element={isLoggedIn ? <Dashboard /> : <Navigate to="/" />}
-        />  */}
-        {/* <Route
-          path="/contact"
-          element={isLoggedIn ? <Contact /> : <Navigate to="/" />}
-        /> */}
-        {/* <Route
-          path="/createTournament"
-          element={isLoggedIn ? <CreateTournament /> : <Navigate to="/" />}
-        /> Update the route path and component name */}
-        {/* <Route path="/home" element={isLoggedIn ? <Home /> : <Navigate to="/" />} /> */}
         <Route
           path="/"
           element={!isLoggedIn ? <BasicForm onLogin={handleLogin} /> : <Navigate to="/home" />}
         />
+        <Route path="/games" element={isLoggedIn ? <Games /> : <Navigate to="/" />} />
         <Route
-          path="/createTournament" element = {<CreateTournament />}/>
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/games" element={<Games />} />
+          path="/dashboard"
+          element={isLoggedIn ? <Dashboard /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/contact"
+          element={isLoggedIn ? <Contact /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/createTournament"
+          element={isLoggedIn ? <CreateTournament /> : <Navigate to="/" />}
+        /> {/* Update the route path and component name */}
+        <Route path="/home" element={isLoggedIn ? <Home /> : <Navigate to="/" />} />
         <Route path="/games/cricket" element={<Cricket />} />
         <Route path="/games/snakeLadder" element={<SnakeLadder />} />
         <Route path="/user/history" element={<UserHistory />} />
