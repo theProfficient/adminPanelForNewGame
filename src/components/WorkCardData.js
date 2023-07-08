@@ -7,21 +7,21 @@ const gamesCardData = [
     {
         imgsrc: game1,
         title:"Cricket",
-        text:"Cricket is a sport that requires the use of a bat and ball. It is easily one of the most prevalent sports in the world.",
+        text:"Cricket is a sport that requires the use of a bat and ball.It is easily one of the most prevalent sports in the world.",
         view:"/games/cricket"
     },
 
     {
         imgsrc: game2,
         title:"SnakeLadder",
-        text:"Snakes and Ladders is a chance-based board game featuring 100 squares. Players have to get to the top while dealing with the consequences of every dice roll.",
+        text:"Snakes and Ladders is a chance-based board game featuring 100 squares.Players have to get to the top while dealing with the consequences of every dice roll.",
         view:"/games/snakeLadder"
     },
 
     {
         imgsrc: game3,
         title:"TicTacToe",
-        text:"Tic-Tac-Toe is traditionally played on a 3 × 3 grid. Players take turns placing a mark in one of the cells of the grid. The goal of the game is for players to position their marks so that they make a continuous line of three cells.",
+        text:"Tic-Tac-Toe is traditionally played on a 3 × 3 grid.Players take turns placing a mark in one of the cells of the grid.The goal of the game is for players to position their marks so that they make a continuous line of three cells.",
         view:"/TicTacToe"
     },
 

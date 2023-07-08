@@ -58,7 +58,7 @@ const CreateTournaments = () => {
 
   return (
     <div className="container">
-      <h1>Create Tournament</h1>
+      {/* <h1>Create Tournament</h1> */}
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label className="label">Game Name:</label>

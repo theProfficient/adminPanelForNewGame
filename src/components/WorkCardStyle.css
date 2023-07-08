@@ -13,7 +13,7 @@
   }
   
   .games-card {
-    background: #6e88b9;
+    background: #0d75bb;
     padding: 1rem;
     width: calc(25% - 20px); /* Adjust the width as needed */
     margin-bottom: 20px; /* Adjust the spacing between boxes */
@@ -33,18 +33,25 @@
   
   .pro-details {
     padding-bottom: 3rem; /* Adjust the spacing between text and buttons */
-    font-size: 1.1rem;
+    font-size: 0.9rem; /* Adjust the font size as needed */
     text-align: justify;
+    font-family: "Times New Roman", serif; /* Set the desired font family */
+    text-transform: lowercase; /* Convert the text to lowercase */
   }
+  
   
   .pro-btns {
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Center the buttons horizontally */
+    align-items: center; /* Center the buttons vertically */
     position: absolute; /* Position buttons at the bottom */
     bottom: 0;
     left: 0;
     right: 0;
+    padding-top: 10px; /* Adjust the padding-top value as needed */
   }
+  
+  
   
   .pro-btns .btn {
     padding: 0.5rem 1rem;

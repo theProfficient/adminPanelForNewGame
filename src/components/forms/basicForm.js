@@ -59,6 +59,7 @@ export const BasicForm = ({ onLogin }) => {
               <input
                 type="password"
                 name="password"
+                
                 id="password"
                 autoComplete="off"
                 value={password}

@@ -14,7 +14,7 @@ const Dashboard = () => {
   return (
   <div>
   <Navbar/>
-  <HeroImage2 heading="ABOUT ."text=" Online Gaming Service Provider "
+  <HeroImage2 heading=" USERS ."text=" some of our most recent Users. "
    />
   <DashboardContent/>
   <Footer/>

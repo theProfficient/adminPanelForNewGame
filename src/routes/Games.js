@@ -67,7 +67,7 @@ import Work from '../components/Work';
 const Games = ()=>{
   return <div>
     <Navbar />
-    <HeroImage2 heading="GAMES." text="some of our most recent Games" />
+    <HeroImage2 heading="GAMES." text="some of our most recent Games." />
     <Work />
     <Footer />
   </div>
