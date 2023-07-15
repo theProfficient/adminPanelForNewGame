@@ -19,6 +19,20 @@ const WorkCard = (props) => {
         }
       };
       
+      const handleClickOnGroups = () => {
+
+        if (props.Groups === '/games/cricket/Groups') {
+          navigate('/games/cricket/Groups');
+        }else if(props.Groups === '/games/snakeLadder/Groups') {
+            navigate('/games/snakeLadder/Groups')
+        }else {
+          // Handle navigation for other routes
+          // For example, navigate to a different component
+          // or redirect to a different page
+          navigate('/some/other/route');
+        }
+      };
+      
   
     return (
       <div className="games-card">
@@ -29,6 +43,9 @@ const WorkCard = (props) => {
           <div className="pro-btns">
             <button className="btn" onClick={handleClick}>
               View
+            </button>
+            <button className="btn" onClick={handleClickOnGroups}>
+              Groups
             </button>
           </div>
         </div>

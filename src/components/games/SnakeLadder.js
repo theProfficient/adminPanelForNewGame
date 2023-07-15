@@ -5,14 +5,13 @@ import './CricketStyle.css';
 const SnakeLadderData = () => {
   const [snakeLadderData, setSnakeLadderData] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(5);
+  const [itemsPerPage] = useState(15);
 
  
   useEffect(() => {
   const fetchSnakeLadderData = () => {
     axios
        .get('https://snakeladder1.azurewebsites.net/getAllSnakeLadderData')
-       //.get('https://snakeladder-c5dz.onrender.com/getAllSnakeLadderData')
       .then(response => {
         setSnakeLadderData(response.data.data);
         console.log(response.data.data);
@@ -58,10 +57,9 @@ const SnakeLadderData = () => {
             <th className="table-header">TableId</th>
             <th className="table-header">EntryFee</th>
             <th className="table-header">Prize</th>
-            <th className="table-header">Time</th>
+            <th className="table-header">Time(minutes)</th>
             <th className="table-header">Players</th>
             <th className="table-header">Status</th>
-            <th className="table-header">Edit</th>
           </tr>
         </thead>
         <tbody>
@@ -74,11 +72,6 @@ const SnakeLadderData = () => {
               <td className="table-cell">{table.maxTime}</td>
               <td className="table-cell">{table.players}</td>
               <td className="table-cell">{table.status}</td>
-              <td className="table-cell">
-                <button className="button edit-button">
-                  <i className="fas fa-edit"></i> Edit
-                </button>
-              </td>
             </tr>
           ))}
         </tbody>

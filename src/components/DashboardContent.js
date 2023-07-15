@@ -8,7 +8,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(5);
+  const [itemsPerPage] = useState(10);
   // const [selectedUserId, setSelectedUserId] = useState(null);
   // const [showUserHistory, setShowUserHistory] = useState(false);
 

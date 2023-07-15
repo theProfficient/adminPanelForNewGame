@@ -5,10 +5,12 @@ import Home from "./routes/Home";
 import Dashboard from "./routes/Dashboard";
 import Contact from "./routes/Contact";
 import Games from "./routes/Games";
-import CreateTournament from './routes/CreateTournament';
+import CreateTournament from "./routes/CreateTournament";
 import Cricket from "./components/games/Cricket";
 import SnakeLadder from "./components/games/SnakeLadder";
 import UserHistory from "./components/UserHistory";
+import CricketGroups from "./components/games/CricketGroups"
+import CricketMatchData from "./components/games/CricketMatchData"
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -21,9 +23,18 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={!isLoggedIn ? <BasicForm onLogin={handleLogin} /> : <Navigate to="/home" />}
+          element={
+            !isLoggedIn ? (
+              <BasicForm onLogin={handleLogin} />
+            ) : (
+              <Navigate to="/home" />
+            )
+          }
         />
-        <Route path="/games" element={isLoggedIn ? <Games /> : <Navigate to="/" />} />
+        <Route
+          path="/games"
+          element={isLoggedIn ? <Games /> : <Navigate to="/" />}
+        />
         <Route
           path="/dashboard"
           element={isLoggedIn ? <Dashboard /> : <Navigate to="/" />}
@@ -35,12 +46,19 @@ function App() {
         <Route
           path="/createTournament"
           element={isLoggedIn ? <CreateTournament /> : <Navigate to="/" />}
-        /> {/* Update the route path and component name */}
-        <Route path="/home" element={isLoggedIn ? <Home /> : <Navigate to="/" />} />
+        />{" "}
+        {/* Update the route path and component name */}
+        <Route
+          path="/home"
+          element={isLoggedIn ? <Home /> : <Navigate to="/" />}
+        />
         <Route path="/games/cricket" element={<Cricket />} />
         <Route path="/games/snakeLadder" element={<SnakeLadder />} />
+        <Route path="/games/cricket/Groups" element={<CricketGroups />} />
         <Route path="/user/history" element={<UserHistory />} />
+        <Route path="/cricket/groupsData/players" element={<CricketMatchData/>} />
       </Routes>
+
     </>
   );
 }
