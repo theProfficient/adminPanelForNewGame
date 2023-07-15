@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './CricketStyle.css';
-import { useNavigate } from 'react-router-dom';
 
 const CricketData = () => {
-  const navigate = useNavigate();
   const [cricketData, setCricketData] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(15);
@@ -33,15 +31,6 @@ const CricketData = () => {
 
   const goToNextPage = () => {
     setCurrentPage(currentPage + 1);
-  };
-
-  const handleClick = async (tableId) => {
-    try {
-      const response = await axios.get(`https://snakeladder1.azurewebsites.net/getAllGroups`);
-      const data = response.data;
-    } catch (error) {
-      console.log('Error fetching match data:', error);
-    }
   };
 
   if (cricketData === null) {

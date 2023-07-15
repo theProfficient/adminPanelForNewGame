@@ -3,7 +3,7 @@ import axios from 'axios';
 import './CricketStyle.css';
 import { useLocation } from 'react-router-dom';
 
-const CrichetMatchData = () => {
+const SnakeLadderMatchData = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const groupId = queryParams.get('groupId');
@@ -14,10 +14,10 @@ const CrichetMatchData = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-    try {
-      const response = await axios.get(`https://snakeladder1.azurewebsites.net/getCricGrp?groupId=${groupId}`)
-      // .get(`https://snakeladder-c5dz.onrender.com/profile?UserId=${UserId}`)
-      
+      try {
+        const response = await axios.get(`https://snakeladder1.azurewebsites.net/getGroup?groupId=${groupId}`)
+      // .get(`https://snakeladder-c5dz.onrender.com/getGroup?groupId=${groupId}`)
+    
         setPlayersData(response.data);
         console.log(response.data.updatedPlayers,"i want to see history");
       } catch (error) {
@@ -52,27 +52,27 @@ const CrichetMatchData = () => {
 
   return (
     <div>
-      {/* {/ <h2>User History</h2> /} */}
+      {/* <h2>User History</h2> */}
       <table className="table">
         <thead>
-        <tr>
+          <tr>
           <th className="table-header">Sr. No.</th>
-            <th className="table-header">UserId</th>
-            <th className="table-header">userName</th>
-            <th className="table-header">run</th>
-            <th className="table-header">wicket</th>
-            <th className="table-header">prize</th>
-            <th className="table-header">isBot</th>
+            <th className="table-header">GroupIdID</th>
+            <th className="table-header">PlayerName</th>
+            <th className="table-header">points</th>
+            {/* <th className="table-header">Wicket</th> */}
+            <th className="table-header">Prize</th>
+            <th className="table-header">IsBot</th>
           </tr>
         </thead>
         <tbody>
           {currentItems.map((item, index) => (
             <tr key={item._id}>
-            <td className="table-cell">{startSerialNumber + index}</td>
-              <td className="table-cell">{item.UserId}</td>
+              <td className="table-cell">{startSerialNumber + index}</td>
+              <td className="table-cell">{groupId}</td>
               <td className="table-cell">{item.userName}</td>
-              <td className="table-cell">{item.run}</td>
-              <td className="table-cell">{item.wicket}</td>
+              <td className="table-cell">{item.points}</td>
+              {/* <td className="table-cell">{item.wicket}</td> */}
               <td className="table-cell">{item.prize}</td>
               <td className="table-cell">{item.isBot.toString()}</td>
             </tr>
@@ -100,4 +100,4 @@ const CrichetMatchData = () => {
   );
 };
 
-export default CrichetMatchData;
+export default SnakeLadderMatchData;

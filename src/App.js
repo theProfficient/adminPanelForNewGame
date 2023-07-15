@@ -9,8 +9,10 @@ import CreateTournament from "./routes/CreateTournament";
 import Cricket from "./components/games/Cricket";
 import SnakeLadder from "./components/games/SnakeLadder";
 import UserHistory from "./components/UserHistory";
-import CricketGroups from "./components/games/CricketGroups"
-import CricketMatchData from "./components/games/CricketMatchData"
+import CricketGroups from "./components/games/CricketGroups";
+import CricketMatchData from "./components/games/CricketMatchData";
+import SnkGroups from "./components/games/SnkGroups";
+import SnkMatchData from "./components/games/SnkMatchData";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -53,10 +55,12 @@ function App() {
           element={isLoggedIn ? <Home /> : <Navigate to="/" />}
         />
         <Route path="/games/cricket" element={<Cricket />} />
-        <Route path="/games/snakeLadder" element={<SnakeLadder />} />
         <Route path="/games/cricket/Groups" element={<CricketGroups />} />
-        <Route path="/user/history" element={<UserHistory />} />
         <Route path="/cricket/groupsData/players" element={<CricketMatchData/>} />
+        <Route path="/games/snakeLadder" element={<SnakeLadder />} />
+        <Route path="/games/snakeLadder/Groups" element={<SnkGroups />} />
+        <Route path="/snakeLadder/groupsData/players" element={<SnkMatchData/>} />
+        <Route path="/user/history" element={<UserHistory />} />
       </Routes>
 
     </>
