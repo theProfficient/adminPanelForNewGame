@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './CricketStyle.css';
-import { useLocation,useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const CricketGroups = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
 
@@ -15,20 +15,21 @@ const CricketGroups = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const response = await axios.get('https://snakeladder1.azurewebsites.net/getAllGroupsOfCric');
+        // Sort the data based on the latest created groups (assuming there's a field 'createdAt' for timestamp)
+        const sortedData = response.data.sort((a, b) => new Date(b.createdTime) - new Date(a.createdTime));
+        setGroupData(sortedData);
+        console.log(sortedData, "group data");
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData(); // Initial fetch
+    const interval = setInterval(fetchData, 3000); // Fetch every 2 seconds
 
-     const response = await axios.get('https://snakeladder1.azurewebsites.net/getAllGroupsOfCric')
-     setGroupData(response.data)
-     console.log(response.data,"group data");
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
-  fetchData(); // Initial fetch
-  const interval = setInterval(fetchData, 3000); // Fetch every 2 seconds
-
-  return () => {
-    clearInterval(interval); // Clean up the interval on component unmount
-  };
+    return () => {
+      clearInterval(interval); // Clean up the interval on component unmount
+    };
   }, []);
 
   const handleView = (groupId) => {
@@ -75,12 +76,11 @@ const CricketGroups = () => {
               <td className="table-cell">{item.ball}</td>
               <td className="table-cell">{item.isMatchOver.toString()}</td>
               <td className="table-cell">{item.group.length}</td>
-                <td className="table-cell">
+              <td className="table-cell">
                 <button className="button userHistory-button" onClick={() => handleView(item._id)}>
                   <i className="fas fa-eye"></i> View
                 </button>
               </td>
-
             </tr>
           ))}
         </tbody>
@@ -107,4 +107,3 @@ const CricketGroups = () => {
 };
 
 export default CricketGroups;
-

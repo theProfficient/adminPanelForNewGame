@@ -13,8 +13,9 @@ const SnakeLadderData = () => {
     axios
        .get('https://snakeladder1.azurewebsites.net/getAllSnakeLadderData')
       .then(response => {
-        setSnakeLadderData(response.data.data);
-        console.log(response.data.data);
+        const sortedData = response.data.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        setSnakeLadderData(sortedData);
+      
       })
       .catch(error => {
         console.error('Error fetching data:', error);

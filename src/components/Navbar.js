@@ -32,19 +32,19 @@ return (
          <li>
             <Link to ="/">Home</Link>             {/* link is used to create url for path */}
          </li>
+         {/* <li> */}
+                    {/* urlname   name of component     */}
+            {/* <Link to ="/games">Games</Link> */}
+         {/* </li> */}
          <li>
-             {/*        urlname   name of component     */}
-            <Link to ="/games">Games</Link>
-         </li>
-         <li>
-            <Link to ="/dashboard"> Dashboard</Link>
+            <Link to ="/dashboard">Users</Link>
          </li>
          <li>
             <Link to ="/createTournament"> CreateTournament</Link>
          </li>
-         <li>
+         {/* <li>
             <Link to ="/contact">Contact</Link>
-         </li>
+         </li> */}
         </ul>
 
         <div className="hamburger" onClick={handleClick}>       {/* hamburger is the icon */}

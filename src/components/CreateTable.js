@@ -27,13 +27,9 @@ const CreateTournaments = () => {
       // Send POST request to the API endpoint
       if (gameName.toLowerCase() === 'cricket') {
         response = await axios.post('https://snakeladder1.azurewebsites.net/tournamentsByAdmin', tournament);
-       // response = await axios.post('https://snakeladder-c5dz.onrender.com/tournamentsByAdmin', tournament);
-        // Log the response data
         console.log('Tournament for cricket created successfully:', response.data.data);
       } else if (gameName.toLowerCase() === 'snakeladder') {
         response = await axios.post('https://snakeladder1.azurewebsites.net/snktournamentsByAdmin', tournament);
-       // response = await axios.post('https://snakeladder-c5dz.onrender.com/tournamentsByAdmin', tournament);
-        // Log the response data
         console.log('Tournament for snakeLadder created successfully:', response.data.data);
       } else {
         throw new Error('Invalid game name');
@@ -61,14 +57,17 @@ const CreateTournaments = () => {
       {/* <h1>Create Tournament</h1> */}
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label className="label">Game Name:</label>
-          <input
-            type="text"
-            className="input"
+        <label className="label">Game Name:</label>
+          <select
+            className="input" // Use select element for the dropdown
             value={gameName}
             onChange={(e) => setGameName(e.target.value)}
             required
-          />
+          >
+            <option value="">Select Game</option> {/* Add a default empty option */}
+            <option value="cricket">Cricket</option>
+            <option value="snakeladder">SnakeLadder</option>
+          </select>
         </div>
         <div className="form-group">
           <label className="label">Entry Fee:</label>

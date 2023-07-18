@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './basicFormStyle.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import Navbar1 from './Navbar1'
 
 export const BasicForm = ({ onLogin }) => {
   const [email, setEmail] = useState('');
@@ -13,12 +13,12 @@ export const BasicForm = ({ onLogin }) => {
 
   const submitForm = async (e) => {
     e.preventDefault();
-    
+
     try {
       // const response = await axios.post('https://snakeladder-c5dz.onrender.com/login', { email, password });
       const response = await axios.post('https://snakeladder1.azurewebsites.net/login', { email, password });
       const { data } = response;
-      console.log("email>>>>>>>>>",email, "password>>>>>>>>>",password);
+      console.log("email>>>>>>>>>", email, "password>>>>>>>>>", password);
       if (data.success) {
         const newEntry = { email, password };
         setAllEntry([...allEntry, newEntry]);
@@ -36,12 +36,13 @@ export const BasicForm = ({ onLogin }) => {
       setError('An error occurred');
     }
   };
-  
 
   return (
     <>
+       <Navbar1 />
       <div className='parentContainer'>
         <div className="formContainer">
+          {/* <h1 className="createTournamentsTitle">Login Here</h1>  */}
           <form action="" onSubmit={submitForm}>
             <div className="inputContainer">
               <label htmlFor="email">Email</label>
@@ -59,7 +60,6 @@ export const BasicForm = ({ onLogin }) => {
               <input
                 type="password"
                 name="password"
-                
                 id="password"
                 autoComplete="off"
                 value={password}

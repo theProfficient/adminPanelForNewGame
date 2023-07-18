@@ -37,3 +37,35 @@
     
   }
   
+  /* Navbar styles */
+.navbar {
+  background-color: #59a5b8; /* Set the background color of the navbar */
+  color: #fff; /* Set the text color in the navbar */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-heading {
+  font-size: 40px;
+  font-family: 'Times New Roman', serif;
+  margin-right: 10px;
+}
+
+/* Style the link in the navbar if needed */
+.navbar-right a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+/* Apply hover effect on the link in the navbar */
+.navbar-right a:hover {
+  text-decoration: underline;
+}

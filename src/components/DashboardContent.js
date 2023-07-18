@@ -17,10 +17,13 @@ const Dashboard = () => {
       axios
         .get("https://snakeladder1.azurewebsites.net/getAllUser")
         //.get('https://snakeladder-c5dz.onrender.com/getAllUser')
-        .then((response) => {
-          setUserData(response.data);
-          console.log(response.data);
-        })
+        .then((response) => {  const sortedUserData = response.data.sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+        );
+
+        setUserData(sortedUserData);
+        console.log(sortedUserData);
+      })
         .catch((error) => {
           console.error("Error fetching data:", error);
         });
@@ -140,8 +143,8 @@ const Dashboard = () => {
           </tr>
         </thead>
         <tbody>
-          {currentItems.map((user, index) => (
-            <tr key={user._id}>
+        {currentItems.map((user, index) => (
+    <tr key={user._id}>
               <td className="table-cell">{startSerialNumber + index}</td>
               <td className="table-cell">{user.UserId}</td>
               <td className="table-cell">

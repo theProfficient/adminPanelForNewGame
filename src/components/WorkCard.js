@@ -6,18 +6,18 @@ import Cricket from "./games/Cricket"
 const WorkCard = (props) => {
     const navigate = useNavigate();
   
-    const handleClick = () => {
-        if (props.view === '/games/cricket') {
-          navigate('/games/cricket');
-        }else if(props.view === '/games/snakeLadder') {
-            navigate('/games/snakeLadder')
-        }else {
-          // Handle navigation for other routes
-          // For example, navigate to a different component
-          // or redirect to a different page
-          navigate('/some/other/route');
-        }
-      };
+    // const handleClick = () => {
+    //     if (props.view === '/games/cricket') {
+    //       navigate('/games/cricket');
+    //     }else if(props.view === '/games/snakeLadder') {
+    //         navigate('/games/snakeLadder')
+    //     }else {
+    //       // Handle navigation for other routes
+    //       // For example, navigate to a different component
+    //       // or redirect to a different page
+    //       navigate('/some/other/route');
+    //     }
+    //   };
       
       const handleClickOnGroups = () => {
 
@@ -41,9 +41,9 @@ const WorkCard = (props) => {
         <div className="pro-details">
           <p>{props.text}</p>
           <div className="pro-btns">
-            <button className="btn" onClick={handleClick}>
+            {/* <button className="btn" onClick={handleClick}>
               View
-            </button>
+            </button> */}
             <button className="btn" onClick={handleClickOnGroups}>
               Groups
             </button>

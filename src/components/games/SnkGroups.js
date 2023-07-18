@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './CricketStyle.css';
 import { useNavigate } from "react-router-dom";
+
 const SnakeLadderGroups = () => {
   const navigate = useNavigate();
   const [groupData, setGroupData] = useState(null);
@@ -12,9 +13,12 @@ const SnakeLadderGroups = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get('https://snakeladder1.azurewebsites.net/getAllGroupsOfSnk')
-      
-        setGroupData(response.data);
-        console.log(response.data,"i want to see groups data");
+       const sortedUserData = response.data.sort(
+      (a, b) => new Date(b.createdTime) - new Date(a.createdTime)
+    );
+
+    setGroupData(sortedUserData);
+        console.log(sortedUserData,"i want to see groups data");
       } catch (error) {
         console.error('Error fetching data:', error);
       }
