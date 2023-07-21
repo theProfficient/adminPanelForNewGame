@@ -17,10 +17,17 @@
   }
   
   .button {
-    background-color: transparent;
-    color: white;
+    background-color: #f1f1f1;
+    color: #007bff;
     border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
     cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .button:hover {
+    background-color: #ddd;
   }
 
   .edit-button {
@@ -30,9 +37,32 @@
     padding: 5px 10px;
     border-radius: 4px;
     cursor: pointer;
+    /* Add box-shadow property */
+    box-shadow: 0 0 5px #007bff;
   }
+  
   
   .edit-button:hover {
     background-color: #007bff;
     color: #fff;
   }
+  .button.userHistory-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .button.userHistory-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .pagination {
+    display: flex; /* Use flexbox to align buttons horizontally */
+    align-items: center; /* Center items vertically in the flex container */
+    justify-content: center; /* Center items horizontally in the flex container */
+  }
+  

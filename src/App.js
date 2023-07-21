@@ -5,14 +5,11 @@ import Home from "./routes/Home";
 import Dashboard from "./routes/Dashboard";
 import Contact from "./routes/Contact";
 import Games from "./routes/Games";
-import CreateTournament from "./routes/CreateTournament";
 import Cricket from "./components/games/Cricket";
-import SnakeLadder from "./components/games/SnakeLadder";
 import UserHistory from "./components/UserHistory";
 import CricketGroups from "./components/games/CricketGroups";
-import CricketMatchData from "./components/games/CricketMatchData";
-import SnkGroups from "./components/games/SnkGroups";
-import SnkMatchData from "./components/games/SnkMatchData";
+import UserHistoryData from "./components/UserHistoryData"
+
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -45,10 +42,10 @@ function App() {
           path="/contact"
           element={isLoggedIn ? <Contact /> : <Navigate to="/" />}
         />
-        <Route
+        {/* <Route
           path="/createTournament"
-          element={isLoggedIn ? <CreateTournament /> : <Navigate to="/" />}
-        />{" "}
+          element={isLoggedIn ? <CreateTournament /> : <Navigate to="/" />} */}
+        {/* />{" "} */}
         {/* Update the route path and component name */}
         <Route
           path="/home"
@@ -56,10 +53,7 @@ function App() {
         />
         <Route path="/games/cricket" element={<Cricket />} />
         <Route path="/games/cricket/Groups" element={<CricketGroups />} />
-        <Route path="/cricket/groupsData/players" element={<CricketMatchData/>} />
-        <Route path="/games/snakeLadder" element={<SnakeLadder />} />
-        <Route path="/games/snakeLadder/Groups" element={<SnkGroups />} />
-        <Route path="/snakeLadder/groupsData/players" element={<SnkMatchData/>} />
+        <Route path="/ticketData/ticket" element={<UserHistoryData/>} />
         <Route path="/user/history" element={<UserHistory />} />
       </Routes>
 

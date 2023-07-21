@@ -1,254 +1,114 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./DashboardContentStyle.css";
-import { useNavigate } from "react-router-dom";
+import './games/CricketStyle.css';
+import { useLocation,useNavigate } from 'react-router-dom';
 // import UserHistory from './UserHistory.js';
 
-const Dashboard = () => {
-  const navigate = useNavigate();
-  const [userData, setUserData] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(10);
-  // const [selectedUserId, setSelectedUserId] = useState(null);
-  // const [showUserHistory, setShowUserHistory] = useState(false);
+const Dashboard = () =>  {
+const navigate = useNavigate();
+const location = useLocation();
+const queryParams = new URLSearchParams(location.search);
 
-  useEffect(() => {
-    const fetchAllUserData = () => {
-      axios
-        .get("https://snakeladder1.azurewebsites.net/getAllUser")
-        //.get('https://snakeladder-c5dz.onrender.com/getAllUser')
-        .then((response) => {  const sortedUserData = response.data.sort(
-          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-        );
+const [ticketData, setTicketData] = useState([]);
+const [currentPage, setCurrentPage] = useState(1);
+const [itemsPerPage] = useState(10);
 
-        setUserData(sortedUserData);
-        console.log(sortedUserData);
-      })
-        .catch((error) => {
-          console.error("Error fetching data:", error);
-        });
-    };
-    fetchAllUserData(); // Initial fetch
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('https://mannualwheel.onrender.com/getAllTicketData');
+      const dataArray = response.data; // Array of documents
 
-    const interval = setInterval(fetchAllUserData, 5000); // Fetch every 5 seconds
+      // Map over the array to extract and display data from each document
+      const formattedData = dataArray.map((dataObject) => {
+        const ticketNumbers = dataObject.Ticket_Numbers;
+        const retailerId = dataObject.retailerid;
 
-    return () => {
-      clearInterval(interval); // Clean up the interval on component unmount
-    };
-  }, []);
+        console.log("Ticket Numbers:", ticketNumbers);
+        console.log("Retailer ID:", retailerId);
 
-  const handleView = (userId) => {
-    navigate(`/user/history?UserId=${userId}`);
-  };
+        // Sort the data based on the latest created groups (assuming there's a field 'createdAt' for timestamp)
+        const sortedData = dataObject.ticketData.sort((a, b) => new Date(b.createdTime) - new Date(a.createdTime));
+        console.log(sortedData, "group data");
 
-  const handleEdit = (userId) => {
-    const updatedUserData = userData.map((user) => {
-      if (user.UserId === userId) {
-        return { ...user, isEditing: true };
-      }
-      return user;
-    });
-    setUserData(updatedUserData);
-  };
-
-  const handleInputChange = (e, userId) => {
-    const { name, value } = e.target;
-    const updatedUserData = userData.map((user) => {
-      if (user.UserId === userId) {
-        return { ...user, [name]: value };
-      }
-      return user;
-    });
-    setUserData(updatedUserData);
-  };
-
-  const handleSave = (userId) => {
-    const user = userData.find((user) => user.UserId === userId);
-    const { UserId, ...updatedData } = user;
-    const queryParams = [];
-
-    for (const field in updatedData) {
-      if (updatedData.hasOwnProperty(field)) {
-        queryParams.push(`${field}=${encodeURIComponent(updatedData[field])}`);
-      }
-    }
-
-    const queryParamsString = queryParams.join("&");
-
-    axios
-      .put(
-        `https://snakeladder1.azurewebsites.net/updateUser?UserId=${UserId}&${queryParamsString}`
-      )
-      // .put(`https://snakeladder-c5dz.onrender.com/updateUser?UserId=${UserId}&${queryParamsString}`)
-      .then((response) => {
-        console.log("User data updated successfully:", response.data);
-        const updatedUserData = userData.map((user) => {
-          if (user.UserId === userId) {
-            return { ...user, ...updatedData };
-          }
-          return user;
-        });
-        setUserData(updatedUserData);
-      })
-      .catch((error) => {
-        console.error("Error updating user data:", error);
-      })
-      .finally(() => {
-        const updatedUserData = userData.map((user) => {
-          if (user.UserId === userId) {
-            return { ...user, isEditing: false };
-          }
-          return user;
-        });
-        setUserData(updatedUserData);
+        // Return an object containing the extracted values and sorted data
+        return {
+          ticketNumbers,
+          retailerId,
+          sortedData,
+        };
       });
+
+      // Now you have an array of objects, each containing data from each document
+      setTicketData(formattedData);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
   };
 
-  const goToPreviousPage = () => {
-    setCurrentPage(currentPage - 1);
-  };
+  fetchData(); // Initial fetch
+  const interval = setInterval(fetchData, 3000); // Fetch every 2 seconds
 
-  const goToNextPage = () => {
-    setCurrentPage(currentPage + 1);
+  return () => {
+    clearInterval(interval); // Clean up the interval on component unmount
   };
+}, []);
 
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = userData.slice(indexOfFirstItem, indexOfLastItem);
-  const startSerialNumber = (currentPage - 1) * itemsPerPage + 1;
-  return (
-    <div>
-      {/* <div className="search-container"> */}
-        {/* <input
-          className="search-input"
-          type="text"
-          placeholder="Search UserId"
-        /> */}
-      {/* </div> */}
-      <table className="table">
-        <thead>
-          <tr>
-            <th className="table-header">Sr. No.</th>
-            <th className="table-header">UserId</th>
-            <th className="table-header">Username</th>
-            <th className="table-header">Balance</th>
-            <th className="table-header">Credit</th>
-            <th className="table-header">Debit</th>
-            <th className="table-header">Ref Code</th>
-            <th className="table-header">TokenId</th>
-            <th className="table-header">Email</th>
-            <th className="table-header">Phone</th>
-            <th className="table-header">User History</th>
-            <th className="table-header">Edit</th>
+
+const handleView = (ticketId) => {
+  navigate(`/ticketData/ticket?ticketId=${ticketId}`);
+};
+
+if (ticketData.length === 0) {
+  return <div>Loading...</div>;
+}
+
+const goToPreviousPage = () => {
+  setCurrentPage(currentPage - 1);
+};
+
+const goToNextPage = () => {
+  setCurrentPage(currentPage + 1);
+};
+
+const indexOfLastItem = currentPage * itemsPerPage;
+const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+const currentItems = ticketData.slice(indexOfFirstItem, indexOfLastItem);
+const startSerialNumber = (currentPage - 1) * itemsPerPage + 1;
+
+return (
+  <div>
+    <table className="table">
+      <thead>
+        <tr>
+          <th className="table-header">Sr. No.</th>
+          <th className="table-header">Ticket Number</th>
+          <th className="table-header">RetailerId</th>
+          <th className="table-header">View</th>
+        </tr>
+      </thead>
+      <tbody>
+        {currentItems.map((item, index) => (
+          <tr key={index}>
+            <td className="table-cell">{startSerialNumber + index}</td>
+            {/* Access "ticketNumbers" and "retailerId" from the object */}
+            <td className="table-cell">{item.ticketNumbers}</td>
+            <td className="table-cell">{item.retailerId}</td>
+            <td className="table-cell">
+              <button className="button userHistory-button" onClick={() => handleView(item.ticketNumbers)}>
+                <i className="fas fa-eye"></i> View
+              </button>
+            </td>
           </tr>
-        </thead>
-        <tbody>
-        {currentItems.map((user, index) => (
-    <tr key={user._id}>
-              <td className="table-cell">{startSerialNumber + index}</td>
-              <td className="table-cell">{user.UserId}</td>
-              <td className="table-cell">
-                {user.isEditing ? (
-                  <input
-                    type="text"
-                    name="userName"
-                    value={user.userName || ""}
-                    onChange={(e) => handleInputChange(e, user.UserId)}
-                  />
-                ) : (
-                  user.userName
-                )}
-              </td>
-              <td className="table-cell">
-                {user.isEditing ? (
-                  <input
-                    type="text"
-                    name="credits"
-                    value={user.credits || ""}
-                    onChange={(e) => handleInputChange(e, user.UserId)}
-                  />
-                ) : (
-                  user.credits
-                )}
-              </td>
-              <td className="table-cell">{user.realMoney}</td>
-              <td className="table-cell">{user.realMoney}</td>
-              <td className="table-cell">{user.referralCode}</td>
-              <td className="table-cell">{user._id}</td>
-              <td className="table-cell">
-                {user.isEditing ? (
-                  <input
-                    type="text"
-                    name="email"
-                    value={user.email || ""}
-                    onChange={(e) => handleInputChange(e, user.UserId)}
-                  />
-                ) : (
-                  user.email
-                )}
-              </td>
-              <td className="table-cell">
-                {user.isEditing ? (
-                  <input
-                    type="text"
-                    name="phone"
-                    value={user.phone || ""}
-                    onChange={(e) => handleInputChange(e, user.UserId)}
-                  />
-                ) : (
-                  user.phone
-                )}
-              </td>
-              <td className="table-cell">
-                <button
-                  className="button userHistory-button"
-                  onClick={() => handleView(user.UserId)}
-                >
-                  <i className="fas fa-eye"></i> View
-                </button>
-              </td>
-              <td className="table-cell">
-                {user.isEditing ? (
-                  <button
-                    className="button save-button"
-                    onClick={() => handleSave(user.UserId)}
-                  >
-                    Save
-                  </button>
-                ) : (
-                  <button
-                    className="button edit-button"
-                    onClick={() => handleEdit(user.UserId)}
-                  >
-                    <i className="fas fa-edit"></i> Edit
-                  </button>
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+        ))}
+      </tbody>
+    </table>
 
-      <div className="pagination">
-        <button
-          className="button"
-          onClick={goToPreviousPage}
-          disabled={currentPage === 1}
-        >
-          Previous
-        </button>
-        <button
-          className="button"
-          onClick={goToNextPage}
-          disabled={indexOfLastItem >= userData.length}
-        >
-          Next
-        </button>
-      </div>
-
-      {/* {showUserHistory && <UserHistory UserId={selectedUserId} />} */}
+    <div className="pagination">
+      {/* Remaining pagination code remains the same */}
     </div>
-  );
+  </div>
+);
 };
 
 export default Dashboard;

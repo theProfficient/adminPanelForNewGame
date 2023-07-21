@@ -37,11 +37,11 @@ return (
             {/* <Link to ="/games">Games</Link> */}
          {/* </li> */}
          <li>
-            <Link to ="/dashboard">Users</Link>
+            <Link to ="/dashboard">Tickets</Link>
          </li>
-         <li>
-            <Link to ="/createTournament"> CreateTournament</Link>
-         </li>
+         {/* <li>
+            <Link to ="/createTournament">TicketsData</Link>
+         </li> */}
          {/* <li>
             <Link to ="/contact">Contact</Link>
          </li> */}
