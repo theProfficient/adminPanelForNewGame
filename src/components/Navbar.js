@@ -39,9 +39,9 @@ return (
          <li>
             <Link to ="/dashboard">Tickets</Link>
          </li>
-         {/* <li>
-            <Link to ="/createTournament">TicketsData</Link>
-         </li> */}
+         <li>
+            <Link to ="/retailers">Retailers</Link>
+         </li>
          {/* <li>
             <Link to ="/contact">Contact</Link>
          </li> */}

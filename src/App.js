@@ -9,7 +9,8 @@ import Cricket from "./components/games/Cricket";
 import UserHistory from "./components/UserHistory";
 import CricketGroups from "./components/games/CricketGroups";
 import UserHistoryData from "./components/UserHistoryData"
-
+import RetailersContent from "./components/RetailersContent"
+import RetailersHistory from "./components/RetailersHistory"
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -42,6 +43,13 @@ function App() {
           path="/contact"
           element={isLoggedIn ? <Contact /> : <Navigate to="/" />}
         />
+
+
+          <Route
+          path="/retailers"
+          element={isLoggedIn ? <RetailersContent /> : <Navigate to="/" />}
+        />
+        
         {/* <Route
           path="/createTournament"
           element={isLoggedIn ? <CreateTournament /> : <Navigate to="/" />} */}
@@ -55,6 +63,7 @@ function App() {
         <Route path="/games/cricket/Groups" element={<CricketGroups />} />
         <Route path="/ticketData/ticket" element={<UserHistoryData/>} />
         <Route path="/user/history" element={<UserHistory />} />
+        <Route path="/retailer/RetailersHistory" element={<RetailersHistory />} />
       </Routes>
 
     </>

@@ -14,7 +14,7 @@ const HeroImage = () => {
 </div>
 <div className="content">
     <p>  Welcome to the admin panel.</p>
-    <h1> Mannual wheel.</h1>
+    <h1> Test project.</h1>
     {/* <div>
         <Link to="/games" className="btn">Games</Link>
         <Link to="/contact" className="btn btn-light">Contact</Link>

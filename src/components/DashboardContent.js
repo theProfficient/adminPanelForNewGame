@@ -11,7 +11,7 @@ const queryParams = new URLSearchParams(location.search);
 
 const [ticketData, setTicketData] = useState([]);
 const [currentPage, setCurrentPage] = useState(1);
-const [itemsPerPage] = useState(10);
+const [itemsPerPage] = useState(12);
 
 useEffect(() => {
   const fetchData = async () => {

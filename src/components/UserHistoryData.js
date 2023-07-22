@@ -10,7 +10,7 @@ const TicketData = () => {
 
   const [ticketData, setticketData] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(5);
+  const [itemsPerPage] = useState(12);
 
   // ... Add the state and functions for edit mode and point update ...
   const [editMode, setEditMode] = useState(false);
@@ -103,25 +103,37 @@ const TicketData = () => {
       setNewPointValue(''); // Set the initial value of newPointValue to an empty string
     }
   };
-  
 
-    // Function to handle the multiplier buttons click event
-    const handleMultiplierClick = (multiplierValue) => {
-      setNewPointValue(multiplierValue);
-    };
-  
+  // Function to handle the multiplier buttons click event
+  const handleMultiplierClick = (multiplierValue) => {
+    setNewPointValue(multiplierValue);
+  };
 
-   // Function to handle the Save button click event
-const handleSave = (retailerId) => {
-  if (newPointValue) { // Check if newPointValue is not empty
-    handleUpdatePoints(retailerId);
-  }
-};
+  // Function to handle the Save button click event
+  const handleSave = (retailerId) => {
+    if (newPointValue) { // Check if newPointValue is not empty
+      handleUpdatePoints(retailerId);
+    }
+  };
 
   // Function to handle the number button click and set the selected number to newPointValue
-  const handleSelectNumber = (number) => {
-    setNewPointValue(number.toString()); // Convert the number to a string and set it to newPointValue
-  };
+  // Function to handle the number button click and set the selected number to newPointValue
+// Function to handle the number button click and set the selected number to newPointValue
+const handleSelectNumber = (number) => {
+  const selectedNumber = parseInt(number, 10); // Convert the selected number to an integer
+
+  if (!isNaN(selectedNumber)) {
+    // Calculate the sum of the selected number from the "tickets" array for each document
+    const sumOfSelectedNumber = ticketData.reduce((accumulator, item) => {
+      if (!item.resultDeclared && item.tickets && item.tickets[0].hasOwnProperty(selectedNumber)) {
+        return accumulator + item.tickets[0][selectedNumber];
+      }
+      return accumulator;
+    }, 0);
+
+    setNewPointValue(sumOfSelectedNumber.toString());
+  }
+};
 
 
   return (
@@ -135,8 +147,8 @@ const handleSave = (retailerId) => {
             <th className="table-header">TotalQuantity</th>
             <th className="table-header">Number</th>
             <th className="table-header">Qty</th>
-            <th className="table-header">UPDATE</th>
-            <th className="table-header">OpeningBalance</th>
+            {/* <th className="table-header">UPDATE</th> */}
+            {/* <th className="table-header">OpeningBalance</th> */}
           </tr>
         </thead>
         <tbody>
@@ -144,7 +156,11 @@ const handleSave = (retailerId) => {
             <tr key={item._id}>
               <td className="table-cell">{startSerialNumber + index}</td>
               <td className="table-cell">{item.retailerid}</td>
-              <td className="table-cell">
+              <td className="table-cell">{item.Ticket_Number}</td>
+              <td className="table-cell">{item.totalqty}</td>
+              <td className="table-cell">{item.number}</td>
+              <td className="table-cell">{item.qty}</td>
+              {/* <td className="table-cell">
                 {editMode && editedRowId === item.retailerid ? (
                   <>
                     <div className="number-buttons">
@@ -175,11 +191,8 @@ const handleSave = (retailerId) => {
                     Edit
                   </button>
                 )}
-              </td>
-              <td className="table-cell">{item.totalqty}</td>
-              <td className="table-cell">{item.number}</td>
-              <td className="table-cell">{item.qty}</td>
-                <td className="table-cell">
+              </td> */}
+              {/* <td className="table-cell">
                 {editMode && editedRowId === item.retailerid ? (
                   <>
                     <input
@@ -224,7 +237,7 @@ const handleSave = (retailerId) => {
                     Edit
                   </button>
                 )}
-              </td>
+              </td> */}
             </tr>
           ))}
         </tbody>
