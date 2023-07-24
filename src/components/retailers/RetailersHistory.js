@@ -96,14 +96,14 @@ const saveWinner = () => {
     width: '48px',
     height: '48px',
     borderRadius: '6px',
-    background: '#3498db',
+    background: 'red', // Change the background color to orange
     color: '#fff',
     border: 'none',
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.2)',
     cursor: 'pointer',
     transition: 'background 0.3s ease',
   };
-
+  
   const openingBalanceButtonStyle = {
     fontSize: '16px',
     fontWeight: 'bold',
@@ -111,13 +111,14 @@ const saveWinner = () => {
     margin: '4px',
     width: '150px',
     borderRadius: '6px',
-    background: '#1e3799',
+    background: '#2ecc71', // Change the background color to parrot green
     color: '#fff',
     border: 'none',
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.2)',
     cursor: 'pointer',
     transition: 'background 0.3s ease',
   };
+  
 
   return (
     <div>
@@ -147,7 +148,7 @@ const saveWinner = () => {
             {number}
           </button>
         ))}
-        <button onClick={handleSaveNumber}>Save</button>
+        {/* <button onClick={handleSaveNumber}>Save</button> */}
         {selectedNumber !== null && <div style={{ color: 'white', fontFamily: 'Times New Roman' }}>Number: {selectedNumber}</div>}
       </div>
 
@@ -161,7 +162,7 @@ const saveWinner = () => {
             {multiplier.label}
           </button>
         ))}
-        <button onClick={handleSaveMultiplier}>Save</button>
+        {/* <button onClick={handleSaveMultiplier}>Save</button> */}
         {selectedMultiplier !== null && <div style={{ color: 'white', fontFamily: 'Times New Roman' }}>Multiplier: {selectedMultiplier}</div>}
       </div>
 
