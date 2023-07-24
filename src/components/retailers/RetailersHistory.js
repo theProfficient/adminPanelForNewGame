@@ -166,7 +166,7 @@ const saveWinner = () => {
       </div>
 
       <button style={openingBalanceButtonStyle} onClick={handleOpeningBalance}>
-      OpeningBalance
+      WinningAmount
       </button>
       {calculatedValue !== null && (
         <div style={{ color: 'white', fontFamily: 'Times New Roman', fontWeight: 'bold', fontSize: '24px' }}>
