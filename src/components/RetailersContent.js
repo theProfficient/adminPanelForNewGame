@@ -54,6 +54,7 @@ const Retailers = () => {
           <tr>
             <th className="table-header">Sr. No.</th>
             <th className="table-header">RetailerId</th>
+            <th className="table-header">OpeningBalance</th>
             {/* Add other table headers here */}
             <th className="table-header">View</th>
           </tr>
@@ -63,6 +64,7 @@ const Retailers = () => {
             <tr key={user.userId}>
               <td className="table-cell">{startSerialNumber + index}</td>
               <td className="table-cell">{user.userId}</td>
+              <td className="table-cell">{user.openingBalance}</td>
               {/* Add other table cells here */}
               <td className="table-cell">
                 <button
