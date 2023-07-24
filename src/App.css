@@ -1,3 +1,5 @@
+@import url('../assets/background-image.jpg');
+
 .App {
   text-align: center;
 }
@@ -14,7 +16,10 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-image: url('./assets//blue2.jpg');
+  background-size: cover; /* Adjust the background size to cover the entire header */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -35,4 +40,9 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.app-container {
+  background-size: cover;
+  background-position: center;
 }

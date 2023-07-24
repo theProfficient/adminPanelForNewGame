@@ -1,5 +1,4 @@
 import "./HeroImageStyle2.css"
-
 import React, { Component } from 'react'
 
 
