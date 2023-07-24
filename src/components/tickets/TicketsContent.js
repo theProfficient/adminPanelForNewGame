@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import './games/CricketStyle.css';
+import '../allTableStyle.css/TableDataStyle.css';
 import { useLocation,useNavigate } from 'react-router-dom';
-// import UserHistory from './UserHistory.js';
 
-const Dashboard = () =>  {
+const Ticket = () =>  {
 const navigate = useNavigate();
 const location = useLocation();
 const queryParams = new URLSearchParams(location.search);
@@ -91,7 +90,6 @@ return (
         {currentItems.map((item, index) => (
           <tr key={index}>
             <td className="table-cell">{startSerialNumber + index}</td>
-            {/* Access "ticketNumbers" and "retailerId" from the object */}
             <td className="table-cell">{item.ticketNumbers}</td>
             <td className="table-cell">{item.retailerId}</td>
             <td className="table-cell">
@@ -105,10 +103,23 @@ return (
     </table>
 
     <div className="pagination">
-      {/* Remaining pagination code remains the same */}
+        <button
+          className="button"
+          onClick={goToPreviousPage}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
+        <button
+          className="button"
+          onClick={goToNextPage}
+          disabled={indexOfLastItem >= ticketData.length}
+        >
+          Next
+        </button>
+      </div>
     </div>
-  </div>
-);
+  );
 };
 
-export default Dashboard;
+export default Ticket;

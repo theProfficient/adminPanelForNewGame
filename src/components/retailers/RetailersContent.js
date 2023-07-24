@@ -55,7 +55,6 @@ const Retailers = () => {
             <th className="table-header">Sr. No.</th>
             <th className="table-header">RetailerId</th>
             <th className="table-header">OpeningBalance</th>
-            {/* Add other table headers here */}
             <th className="table-header">View</th>
           </tr>
         </thead>
@@ -65,7 +64,6 @@ const Retailers = () => {
               <td className="table-cell">{startSerialNumber + index}</td>
               <td className="table-cell">{user.userId}</td>
               <td className="table-cell">{user.openingBalance}</td>
-              {/* Add other table cells here */}
               <td className="table-cell">
                 <button
                   className="button userHistory-button"
@@ -74,7 +72,6 @@ const Retailers = () => {
                   <i className="fas fa-eye"></i> View
                 </button>
               </td>
-              {/* Add other table cells here */}
             </tr>
           ))}
         </tbody>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './games/CricketStyle.css';
+import '../allTableStyle.css/TableDataStyle.css';
 import { useLocation } from 'react-router-dom';
 
 const TicketData = () => {
@@ -115,9 +115,6 @@ const TicketData = () => {
       handleUpdatePoints(retailerId);
     }
   };
-
-  // Function to handle the number button click and set the selected number to newPointValue
-  // Function to handle the number button click and set the selected number to newPointValue
 // Function to handle the number button click and set the selected number to newPointValue
 const handleSelectNumber = (number) => {
   const selectedNumber = parseInt(number, 10); // Convert the selected number to an integer
@@ -147,8 +144,6 @@ const handleSelectNumber = (number) => {
             <th className="table-header">TotalQuantity</th>
             <th className="table-header">Number</th>
             <th className="table-header">Qty</th>
-            {/* <th className="table-header">UPDATE</th> */}
-            {/* <th className="table-header">OpeningBalance</th> */}
           </tr>
         </thead>
         <tbody>
@@ -160,84 +155,6 @@ const handleSelectNumber = (number) => {
               <td className="table-cell">{item.totalqty}</td>
               <td className="table-cell">{item.number}</td>
               <td className="table-cell">{item.qty}</td>
-              {/* <td className="table-cell">
-                {editMode && editedRowId === item.retailerid ? (
-                  <>
-                    <div className="number-buttons">
-                      {item.number.map((num) => (
-                        <button key={num} onClick={() => handleSelectNumber(num)}>
-                          {num}
-                        </button>
-                      ))}
-                    </div>
-                    <input
-                      type="text"
-                      value={newPointValue}
-                      onChange={(e) => setNewPointValue(e.target.value)}
-                      className="input-bar"
-                    />
-                    <button
-                      className="button save-button"
-                      onClick={() => handleSave(item.retailerid)}
-                    >
-                      Save
-                    </button>
-                  </>
-                ) : (
-                  <button
-                    className="button edit-button"
-                    onClick={() => handleEdit(item.retailerid, item.point)}
-                  >
-                    Edit
-                  </button>
-                )}
-              </td> */}
-              {/* <td className="table-cell">
-                {editMode && editedRowId === item.retailerid ? (
-                  <>
-                    <input
-                      type="text"
-                      value={newPointValue}
-                      onChange={(e) => setNewPointValue(e.target.value)}
-                      style={{ overflow: 'hidden' }} // Remove scroll bar from input box
-                      className="input-field"
-                    />
-                    <button
-                      className={`button multiplier-button ${newPointValue !== '' ? 'selected' : ''}`}
-                      onClick={() => handleMultiplierClick('1x')}
-                    >
-                      1x
-                    </button>
-                    <button
-                      className={`button multiplier-button ${newPointValue !== '' ? 'selected' : ''}`}
-                      onClick={() => handleMultiplierClick('2x')}
-                    >
-                      2x
-                    </button>
-                    <button
-                      className={`button multiplier-button ${newPointValue !== '' ? 'selected' : ''}`}
-                      onClick={() => handleMultiplierClick('3x')}
-                    >
-                      3x
-                    </button>
-                    {newPointValue !== '' && (
-                      <button
-                        className="button save-button"
-                        onClick={() => handleSave(item.retailerid)}
-                      >
-                        Save
-                      </button>
-                    )}
-                  </>
-                ) : (
-                  <button
-                    className="button edit-button"
-                    onClick={() => handleEdit(item.retailerid, item.point)}
-                  >
-                    Edit
-                  </button>
-                )}
-              </td> */}
             </tr>
           ))}
         </tbody>

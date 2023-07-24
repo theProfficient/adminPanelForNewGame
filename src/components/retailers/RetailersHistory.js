@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './games/CricketStyle.css';
+import '../allTableStyle.css/TableDataStyle.css';
 import { useLocation } from 'react-router-dom';
 
 const UserHistory = () => {
