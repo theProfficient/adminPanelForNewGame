@@ -23,7 +23,7 @@ const Retailers = () => {
     };
     fetchAllUserData(); // Initial fetch
 
-    const interval = setInterval(fetchAllUserData, 5000); // Fetch every 5 seconds
+    const interval = setInterval(fetchAllUserData, 1000); // Fetch every 5 seconds
 
     return () => {
       clearInterval(interval); // Clean up the interval on component unmount

@@ -53,7 +53,7 @@ const TicketData = () => {
 
   useEffect(() => {
     fetchData(); // Initial fetch
-    const interval = setInterval(fetchData, 3000); // Fetch every 2 seconds
+    const interval = setInterval(fetchData, 1000); // Fetch every 2 seconds
 
     return () => {
       clearInterval(interval); // Clean up the interval on component unmount

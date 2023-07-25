@@ -14,15 +14,23 @@ const UserHistory = () => {
   const [calculatedValue, setCalculatedValue] = useState(null);
 
   useEffect(() => {
-    axios
-      .get(`https://mannualwheel.onrender.com/getData?userId=${userId}`)
-      .then(response => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`https://mannualwheel.onrender.com/getData?userId=${userId}`);
         setUserData(response.data);
         console.log(response.data.ticketswithQty[0], "i want to see balance");
-      })
-      .catch(error => {
+      } catch (error) {
         console.error('Error fetching data:', error);
-      });
+      }
+    };
+
+    fetchData(); // Initial fetch
+
+    const interval = setInterval(fetchData, 1000); // Fetch every 1 second (1000 milliseconds)
+
+    return () => {
+      clearInterval(interval); // Clean up the interval on component unmount
+    };
   }, [userId]);
 
   if (userData === null) {
