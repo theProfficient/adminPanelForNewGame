@@ -27,7 +27,22 @@ const HeroImage = () => {
         <h1>Test project.</h1>
         {isLoggedIn && (
           // Show the logout button only if the user is logged in
-          <button onClick={handleLogout}>Logout</button>
+          <button
+          onClick={handleLogout}
+          style={{
+            padding: '12px 20px',
+            backgroundColor: '#ffA500', // Change to orange color (Hex code for orange)
+            color: '#fff',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            fontSize: '16px',
+         
+          }}
+        >
+          Logout
+        </button>
+        
         )}
       </div>
     </div>

@@ -87,7 +87,6 @@ const saveWinner = () => {
     { label: '2x', value: 18 },
     { label: '3x', value: 27 },
   ];
-
   const buttonStyle = {
     fontSize: '16px',
     fontWeight: 'bold',
@@ -96,13 +95,15 @@ const saveWinner = () => {
     width: '48px',
     height: '48px',
     borderRadius: '6px',
-    background: 'red', // Change the background color to orange
+    background: 'rgb(255, 69, 0)', // Orange-red color using RGB values
     color: '#fff',
     border: 'none',
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.2)',
     cursor: 'pointer',
     transition: 'background 0.3s ease',
   };
+  
+  
   
   const openingBalanceButtonStyle = {
     fontSize: '16px',
