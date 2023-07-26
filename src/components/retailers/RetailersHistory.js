@@ -9,7 +9,8 @@ const RetailersHistory = () => {
   const userId = queryParams.get('userId');
 
   const [userData, setUserData] = useState(null);
-  const [selectedMultiplier, setSelectedMultiplier] = useState(null);
+  const [selectedMultiplier, setSelectedMultiplier] = useState(9);
+  const [selectedMultiplierNum, setSelectedMultiplierNum] = useState("1x");
   const [selectedNumber, setSelectedNumber] = useState(null);
   const [calculatedValue, setCalculatedValue] = useState(null);
 
@@ -38,18 +39,21 @@ const RetailersHistory = () => {
 
   const handleNumberButtonClick = (numberValue) => {
     setSelectedNumber(numberValue);
-    handleOpeningBalance();
-  };
-
-  const handleMultiplierButtonClick = (multiplierValue) => {
-    setSelectedMultiplier(multiplierValue);
-    handleOpeningBalance();
-  };
-
-  const handleOpeningBalance = () => {
-    if (selectedMultiplier !== null && selectedNumber !== null) {
-      const balanceIndex = userData.ticketswithQty[0][selectedNumber];
+    // Move the handleOpeningBalance logic here
+    if (selectedMultiplier !== null && numberValue !== null) {
+      const balanceIndex = userData.ticketswithQty[0][numberValue];
       const openingBalance = selectedMultiplier * balanceIndex;
+      setCalculatedValue(openingBalance);
+    }
+  };
+
+  const handleMultiplierButtonClick = (multiplierValue,multiplierLabel) => {
+    setSelectedMultiplier(multiplierValue);
+    setSelectedMultiplierNum(multiplierLabel)
+    // Move the handleOpeningBalance logic here
+    if (multiplierValue !== null && selectedNumber !== null) {
+      const balanceIndex = userData.ticketswithQty[0][selectedNumber];
+      const openingBalance = multiplierValue * balanceIndex;
       setCalculatedValue(openingBalance);
     }
   };
@@ -151,24 +155,19 @@ const RetailersHistory = () => {
           <button
             key={multiplier.label}
             style={buttonStyle}
-            onClick={() => handleMultiplierButtonClick(multiplier.value)}
+            onClick={() => handleMultiplierButtonClick(multiplier.value,multiplier.label)}
           >
             {multiplier.label}
           </button>
         ))}
         {selectedMultiplier !== null && (
-          <div style={{ color: 'white', fontFamily: 'Times New Roman' }}>Multiplier: {selectedMultiplier}</div>
+          <div style={{ color: 'white', fontFamily: 'Times New Roman' }}>Multiplier: {selectedMultiplierNum}</div>
         )}
       </div>
-{/* 
-      <button style={openingBalanceButtonStyle} onClick={handleOpeningBalance}>
-        Calculate Opening Balance
-      </button> */}
-      {calculatedValue !== null && (
-        <div style={{ color: 'white', fontFamily: 'Times New Roman', fontWeight: 'bold', fontSize: '24px' }}>
-          Balance: {calculatedValue}
-        </div>
-      )}
+
+      <div style={{ color: 'white', fontFamily: 'Times New Roman', fontWeight: 'bold', fontSize: '24px' }}>
+        Balance: {calculatedValue}
+      </div>
 
       <button style={openingBalanceButtonStyle} onClick={handleDeclareWinner}>
         Declare Winner
