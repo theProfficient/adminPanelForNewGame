@@ -3,7 +3,7 @@ import axios from 'axios';
 import '../allTableStyle.css/TableDataStyle.css';
 import { useLocation } from 'react-router-dom';
 
-const UserHistory = () => {
+const RetailersHistory = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const userId = queryParams.get('userId');
@@ -18,7 +18,6 @@ const UserHistory = () => {
       try {
         const response = await axios.get(`https://mannualwheel.onrender.com/getData?userId=${userId}`);
         setUserData(response.data);
-        console.log(response.data.ticketswithQty[0], "i want to see balance");
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -39,14 +38,12 @@ const UserHistory = () => {
 
   const handleNumberButtonClick = (numberValue) => {
     setSelectedNumber(numberValue);
-    setCalculatedValue(null);
-    const balanceIndex = userData.ticketswithQty[0][numberValue];
-    console.log("Balance Index:", balanceIndex);
+    handleOpeningBalance();
   };
 
   const handleMultiplierButtonClick = (multiplierValue) => {
     setSelectedMultiplier(multiplierValue);
-    setCalculatedValue(null);
+    handleOpeningBalance();
   };
 
   const handleOpeningBalance = () => {
@@ -56,37 +53,6 @@ const UserHistory = () => {
       setCalculatedValue(openingBalance);
     }
   };
-  
-  const handleSaveNumber = () => {
-    console.log("Selected Number:", selectedNumber);
-  };
-  
-  const handleSaveMultiplier = () => {
-    console.log("Selected Multiplier:", selectedMultiplier);
-  };
-
-  
-const saveWinner = () => {
-  if (selectedMultiplier !== null && selectedNumber !== null && calculatedValue !== null) {
-    const balanceIndex = userData.ticketswithQty[0][selectedNumber];
-    const selectedMultiplierObject = multipliers.find(multiplier => multiplier.value === selectedMultiplier);
-    const winType = selectedMultiplierObject.label; // Using the label of selected multiplier
-    const winNumber = selectedNumber;
-
-    axios
-      .put(`https://mannualwheel.onrender.com/declareWinner?retailerid=${userId}&winType=${winType}&winNumber=${winNumber}`)
-      .then(response => {
-        console.log(response.data, "i want to see winner data");
-        window.alert("Winner has been declared successfully!");
-      })
-      .catch(error => {
-        console.error('Error declaring winner:', error);
-        window.alert("Failed to declare winner!");
-      });
-  } else {
-    window.alert("Please select a number, multiplier, and calculate the opening balance first!");
-  }
-};
 
   const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -95,6 +61,7 @@ const saveWinner = () => {
     { label: '2x', value: 18 },
     { label: '3x', value: 27 },
   ];
+
   const buttonStyle = {
     fontSize: '16px',
     fontWeight: 'bold',
@@ -110,9 +77,7 @@ const saveWinner = () => {
     cursor: 'pointer',
     transition: 'background 0.3s ease',
   };
-  
-  
-  
+
   const openingBalanceButtonStyle = {
     fontSize: '16px',
     fontWeight: 'bold',
@@ -127,7 +92,28 @@ const saveWinner = () => {
     cursor: 'pointer',
     transition: 'background 0.3s ease',
   };
-  
+
+  const handleDeclareWinner = () => {
+    if (selectedMultiplier !== null && selectedNumber !== null && calculatedValue !== null) {
+      const balanceIndex = userData.ticketswithQty[0][selectedNumber];
+      const selectedMultiplierObject = multipliers.find(multiplier => multiplier.value === selectedMultiplier);
+      const winType = selectedMultiplierObject.label; // Using the label of selected multiplier
+      const winNumber = selectedNumber;
+
+      axios
+        .put(`https://mannualwheel.onrender.com/declareWinner?retailerid=${userId}&winType=${winType}&winNumber=${winNumber}`)
+        .then(response => {
+          console.log(response.data, "i want to see winner data");
+          window.alert("Winner has been declared successfully!");
+        })
+        .catch(error => {
+          console.error('Error declaring winner:', error);
+          window.alert("Failed to declare winner!");
+        });
+    } else {
+      window.alert("Please select a number, multiplier, and calculate the opening balance first!");
+    }
+  };
 
   return (
     <div>
@@ -157,7 +143,6 @@ const saveWinner = () => {
             {number}
           </button>
         ))}
-        {/* <button onClick={handleSaveNumber}>Save</button> */}
         {selectedNumber !== null && <div style={{ color: 'white', fontFamily: 'Times New Roman' }}>Number: {selectedNumber}</div>}
       </div>
 
@@ -171,24 +156,25 @@ const saveWinner = () => {
             {multiplier.label}
           </button>
         ))}
-        {/* <button onClick={handleSaveMultiplier}>Save</button> */}
-        {selectedMultiplier !== null && <div style={{ color: 'white', fontFamily: 'Times New Roman' }}>Multiplier: {selectedMultiplier}</div>}
+        {selectedMultiplier !== null && (
+          <div style={{ color: 'white', fontFamily: 'Times New Roman' }}>Multiplier: {selectedMultiplier}</div>
+        )}
       </div>
-
+{/* 
       <button style={openingBalanceButtonStyle} onClick={handleOpeningBalance}>
-      WinningAmount
-      </button>
+        Calculate Opening Balance
+      </button> */}
       {calculatedValue !== null && (
         <div style={{ color: 'white', fontFamily: 'Times New Roman', fontWeight: 'bold', fontSize: '24px' }}>
           Balance: {calculatedValue}
         </div>
       )}
-      <button style={openingBalanceButtonStyle} onClick={saveWinner}>
+
+      <button style={openingBalanceButtonStyle} onClick={handleDeclareWinner}>
         Declare Winner
       </button>
-
     </div>
   );
 };
 
-export default UserHistory;
+export default RetailersHistory;
